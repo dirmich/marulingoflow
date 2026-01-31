@@ -30,10 +30,10 @@
 - [x] Phase 3: 크로스 플랫폼 앱 - Flutter 개발
     - [x] Flutter 기본 구조 및 테마 설정
     - [x] API 연동을 위한 Dio/Provider 설정
-- [/] Phase 4: 고도화 및 어드민 시스템 (Admin: oldtv.cf@gmail.com)
-    - [/] DB 스키마 확장 (Role 필드 추가) 및 관리자 권한 로직 설계
-    - [ ] AI(Gemini) 연동 예문 자동 생성 엔진 개발
-    - [ ] 게이미피케이션 (리더보드, 스트릭, 뱃지) 구현
-    - [ ] 어드민 전용 웹 대시보드 및 데이터 관리 UI 구현
-    - [ ] 도커 컴포즈(Docker Compose) 환경 구축
-- [ ] 작업 완료 보고 및 git commit/push
+- [x] Phase 4: 고도화 및 어드민 시스템 (Admin: oldtv.cf@gmail.com)
+    - [x] DB 스키마 확장 (Role 필드 추가) 및 관리자 권한 로직 설계
+    - [x] AI(Gemini) 연동 예문 자동 생성 엔진 개발
+    - [x] 게이미피케이션 (리더보드, 스트릭, 뱃지) 구현
+    - [x] 어드민 전용 웹 대시보드 및 데이터 관리 UI 구현
+    - [x] 도커 컴포즈(Docker Compose) 환경 구축
+- [x] 작업 완료 보고 및 git commit/push
