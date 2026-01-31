@@ -2,7 +2,7 @@ import sql from '../db'
 
 export class UserService {
     static async findOrCreateByGoogle(googleId: string, email: string, nickname: string) {
-        return await sql.begin(async (t) => {
+        return await (sql.begin as any)(async (t: any) => {
             // 1. 이미 등록된 OAuth 공급자 확인
             const [existingProvider] = await t`
         SELECT user_id FROM auth_providers 
@@ -25,10 +25,12 @@ export class UserService {
           VALUES (${email}, ${nickname})
           RETURNING id, email, nickname
         `
-                userId = newUser.id
+                userId = newUser?.id
             }
 
-            // 4. OAuth 공급자 연결
+            if (!userId) throw new Error('User creation failed')
+
+            // 4. OAuth 공급자 연동
             await t`
         INSERT INTO auth_providers (user_id, provider_name, provider_user_id)
         VALUES (${userId}, 'google', ${googleId})

@@ -7,9 +7,11 @@
 - [x] 프로젝트 구조 재편 및 초기화
     - [x] frontend, backend, app, docs 폴더 생성 및 문서 이동
     - [x] 공통 .env 설정 및 포트 정의 (FE: 3000, BE: 8000)
-- [x] Phase 1.3: Hono.js 서버 재구축 (backend 폴더 내)
-- [x] Google SSO 연동 및 Redis 세션 로직 구현
-    - [x] 환경 변수 및 DB/Redis 클라이언트 초기화
-    - [x] Google OAuth2 인증 흐름 구현
-    - [x] JWT 및 Refresh Token 발행 (Redis 저장)
-- [x] 작업 완료 보고 및 git commit/push
+- [x] Phase 1.3:- [x] Google SSO 연동 및 Redis 세션 로직 구현
+- [/] SRS 단어장 및 데이터 관리 시스템 구현
+    - [/] Word 및 Srs 서비스 개발 (SM-2 알고리즘)
+    - [ ] SRS 관련 API 라우트 구현
+    - [ ] 초기 단어 데이터 삽입 로직
+- [ ] 퀴즈 시스템 및 커뮤니티 기능 구현
+- [ ] 실시간 퀴즈 대회 (WebSocket) 구현
+- [ ] 작업 완료 보고 및 git commit/push

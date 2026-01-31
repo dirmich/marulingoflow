@@ -3,6 +3,7 @@ import { logger } from 'hono/logger'
 import { cors } from 'hono/cors'
 
 import auth from './routes/auth'
+import srs from './routes/srs'
 
 const app = new Hono()
 
@@ -12,6 +13,7 @@ app.use('*', cors())
 
 // Routes
 app.route('/auth', auth)
+app.route('/srs', srs)
 
 app.get('/', (c) => c.text('Lingo-Flow API Service'))
 
