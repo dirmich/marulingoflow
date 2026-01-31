@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { db } from "../db";
+import db from "../db";
 import { adminMiddleware } from "../middlewares/admin";
 
 const admin = new Hono();
@@ -8,9 +8,9 @@ admin.use("*", adminMiddleware);
 
 // 전체 사용자 통계
 admin.get("/stats", async (c) => {
-    const [userCount] = await db`SELECT count(*) FROM users`;
-    const [wordCount] = await db`SELECT count(*) FROM words`;
-    const [activeSessions] = await db`SELECT count(*) FROM srs_states WHERE last_review > now() - interval '24 hours'`;
+    const [userCount = { count: 0 }] = await db`SELECT count(*) FROM users`;
+    const [wordCount = { count: 0 }] = await db`SELECT count(*) FROM words`;
+    const [activeSessions = { count: 0 }] = await db`SELECT count(*) FROM srs_states WHERE last_review > now() - interval '24 hours'`;
 
     return c.json({
         total_users: userCount.count,
