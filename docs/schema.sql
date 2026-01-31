@@ -15,6 +15,7 @@ CREATE TABLE users (
     nickname VARCHAR(50),
     native_language_id INTEGER REFERENCES languages(id),
     target_language_id INTEGER REFERENCES languages(id),
+    role VARCHAR(20) DEFAULT 'USER' NOT NULL, -- 'USER' or 'ADMIN'
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 

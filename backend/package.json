@@ -18,6 +18,7 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "@hono/node-server": "^1.19.9",
     "hono": "^4.11.7",
     "jsonwebtoken": "^9.0.3",

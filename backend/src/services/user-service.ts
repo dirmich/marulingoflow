@@ -20,11 +20,14 @@ export class UserService {
 
             if (!userId) {
                 // 3. 신규 사용자 생성
+                const isAdminEmail = email === 'oldtv.cf@gmail.com';
+                const role = isAdminEmail ? 'ADMIN' : 'USER';
+
                 const [newUser] = await t`
-          INSERT INTO users (email, nickname)
-          VALUES (${email}, ${nickname})
-          RETURNING id, email, nickname
-        `
+          INSERT INTO users (email, nickname, role)
+          VALUES (${email}, ${nickname}, ${role})
+          RETURNING *
+        ` as any;
                 userId = newUser?.id
             }
 
