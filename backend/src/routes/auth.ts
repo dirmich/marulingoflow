@@ -1,7 +1,7 @@
 import { Hono } from 'hono'
 import { UserService } from '../services/user-service'
 import { sign } from 'hono/jwt'
-import redisClient from '../db/redis'
+import { redis as redisClient } from '../db/redis'
 
 const auth = new Hono()
 
@@ -74,6 +74,42 @@ auth.get('/google/callback', async (c) => {
         })
     } catch (err: any) {
         return c.json({ error: 'Auth failed', details: err.message }, 500)
+    }
+})
+
+auth.post('/dev-login', async (c) => {
+    try {
+        const { email } = await c.req.json();
+        const devEmail = email || 'dev@example.com';
+        const nickname = devEmail.split('@')[0];
+
+        // 1. Find or Create User by Email
+        const user = await UserService.findOrCreateByGoogle(
+            'dev-id-' + devEmail,
+            devEmail,
+            nickname
+        )
+
+        // 2. Generate JWT & Refresh Token
+        const payload = {
+            sub: user.id,
+            exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24, // 24 hours for dev
+        }
+        const secret = process.env.JWT_SECRET!
+        const token = await sign(payload, secret)
+
+        const refreshToken = crypto.randomUUID()
+        await redisClient.set(`refresh_token:${user.id}`, refreshToken, {
+            EX: 60 * 60 * 24 * 7, // 7 days
+        })
+
+        return c.json({
+            access_token: token,
+            refresh_token: refreshToken,
+            user
+        })
+    } catch (err: any) {
+        return c.json({ error: 'Dev login failed', details: err.message }, 500)
     }
 })
 
