@@ -7,6 +7,7 @@ import srs from './routes/srs'
 import quiz from './routes/quiz'
 import community from './routes/community'
 import admin from './routes/admin'
+import leaderboard from './routes/leaderboard'
 import { GeminiService } from './services/gemini-service'
 
 const app = new Hono()
@@ -21,6 +22,7 @@ app.route('/srs', srs)
 app.route('/quiz', quiz)
 app.route('/community', community)
 app.route('/admin', admin)
+app.route('/leaderboard', leaderboard)
 
 // AI 예문 생성 API 엔드포인트
 app.get('/ai/example/:word', async (c) => {

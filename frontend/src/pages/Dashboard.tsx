@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Sparkles, Calendar, Zap, BookOpen } from 'lucide-react'
+import { Sparkles, Calendar, Zap, BookOpen, BrainCircuit } from 'lucide-react'
+import LearningChart from '../components/LearningChart'
 
 const Dashboard: React.FC = () => {
     return (
@@ -16,7 +17,20 @@ const Dashboard: React.FC = () => {
                 <StatCard icon={<Calendar className="text-blue-400" />} label="학습 기간" value="12일째" />
                 <StatCard icon={<Zap className="text-yellow-400" />} label="연속Streak" value="5일" />
                 <StatCard icon={<BookOpen className="text-green-400" />} label="학습한 단어" value="124개" />
-                <StatCard icon={<Zap className="text-purple-400" />} label="현재 레벨" value="LV. 3" />
+                <StatCard icon={<BrainCircuit className="text-purple-400" />} label="현재 레벨" value="LV. 3" />
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="lg:col-span-2">
+                    <LearningChart />
+                </div>
+                <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-center gap-4">
+                    <h3 className="text-sm font-bold text-slate-500 uppercase tracking-widest">AI Tutor Suggestion</h3>
+                    <p className="text-slate-300 text-sm italic">"어드민 계정으로 로그인되어 있습니다. 시스템을 관리하려면 /admin으로 접속하세요."</p>
+                    <button className="w-full py-2 bg-slate-800 text-blue-400 font-bold rounded-lg border border-blue-900/50 hover:bg-slate-700 transition-all">
+                        AI 예문 듣기
+                    </button>
+                </div>
             </div>
 
             <section className="p-8 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-xl flex flex-col items-center text-center gap-4">

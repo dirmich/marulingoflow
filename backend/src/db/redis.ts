@@ -1,11 +1,18 @@
 import { createClient } from 'redis'
 
-const redisClient = createClient({
+export const redis = createClient({
     url: `redis://${process.env.REDIS_HOST || 'localhost'}:${process.env.REDIS_PORT || 6379}`
-})
+});
 
-redisClient.on('error', (err) => console.log('Redis Client Error', err))
+// Gamification: Leaderboard Helper
+export const updateScore = async (userId: string, score: number) => {
+    await redis.zIncrBy('leaderboard', score, userId);
+};
 
-await redisClient.connect()
+export const getLeaderboard = async (limit: number = 10) => {
+    return await redis.zRangeWithScores('leaderboard', 0, limit - 1, { REV: true });
+};
 
-export default redisClient
+redis.on('error', (err) => console.log('Redis Client Error', err))
+
+await redis.connect()

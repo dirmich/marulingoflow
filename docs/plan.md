@@ -82,6 +82,26 @@ React(Vite)를 사용하여 고품질의 학습 경험을 제공하는 대시보
 
 ---
 
+# Phase 4: Advanced Features & Admin System Plan
+
+모든 고도화 기능을 통합하고 어드민 시스템을 구축합니다.
+
+## 1. Role-Based Access Control (Admin: oldtv.cf@gmail.com)
+- **Auth**: 해당 이메일 로그인 시 `ADMIN` 역할 부여 및 JWT 포함.
+- **Admin API**: 사용자 전체 목록 조회 및 시스템 통계 제공.
+
+## 2. Gemini AI Integration
+- 단어별 실시간 예문 생성 및 학습 가이드 제공.
+
+## 3. Gamification & Analytics
+- **Leaderboard**: Redis Sorted Sets 기반 실시간 랭킹.
+- **Charts**: Recharts를 활용한 학습 추이 시각화.
+
+## 4. Infrastructure
+- **Docker**: DB/Redis 원클릭 환경 구축 (`docker-compose.yml`).
+
+---
+
 # Phase 3: Cross-platform App Design Plan (Flutter)
 
 Flutter를 사용하여 iOS와 Android에서 동일한 고성능 학습 경험을 제공합니다.
