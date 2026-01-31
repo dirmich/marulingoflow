@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard'
 import QuizPage from './pages/QuizPage'
 import CommunityPage from './pages/CommunityPage'
 import LearningPage from './pages/LearningPage'
+import AdminPanel from './pages/AdminPanel'
 
 const queryClient = new QueryClient()
 
@@ -18,6 +19,7 @@ function App() {
             <Route path="quiz" element={<QuizPage />} />
             <Route path="community" element={<CommunityPage />} />
             <Route path="learn" element={<LearningPage />} />
+            <Route path="admin" element={<AdminPanel />} />
           </Route>
         </Routes>
       </BrowserRouter>
