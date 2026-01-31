@@ -1,4 +1,10 @@
+import { createBunWebSocket } from 'hono/bun'
 import app from './app'
+import { tournamentWSHandler } from './routes/websocket'
+
+const { upgradeWebSocket, websocket } = createBunWebSocket()
+
+app.get('/tournament/ws', upgradeWebSocket((c) => tournamentWSHandler))
 
 const port = Number(process.env.BACKEND_PORT) || 8000
 

@@ -25,7 +25,7 @@ export class CommunityService {
     static async createPost(userId: string, communityId: number, content: string, postType: string = 'normal', imageUrl?: string) {
         return await sql`
       INSERT INTO posts (user_id, community_id, content, post_type, image_url)
-      VALUES (${userId}, ${communityId}, ${content}, ${postType}, ${imageUrl})
+      VALUES (${userId}, ${communityId}, ${content}, ${postType}, ${imageUrl || null})
       RETURNING *
     `
     }
