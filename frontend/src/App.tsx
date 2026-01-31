@@ -9,6 +9,7 @@ import CommunityPage from './pages/CommunityPage'
 import LearningPage from './pages/LearningPage'
 import AdminPanel from './pages/AdminPanel'
 import LoginPage from './pages/LoginPage'
+import GoogleCallback from './pages/GoogleCallback'
 
 const queryClient = new QueryClient()
 
@@ -19,6 +20,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/auth/callback" element={<GoogleCallback />} />
             <Route element={<ProtectedRoute />}>
               <Route path="/" element={<Layout />}>
                 <Route index element={<Dashboard />} />

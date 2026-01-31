@@ -2,22 +2,31 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Sparkles, Calendar, Zap, BookOpen, BrainCircuit } from 'lucide-react'
 import LearningChart from '../components/LearningChart'
+import { useAuth } from '../context/AuthContext'
+import { useUserStats } from '../services/srs'
 
 const Dashboard: React.FC = () => {
+    const { user } = useAuth()
+    const { data: stats, isLoading } = useUserStats()
+
+    if (isLoading) {
+        return <div className="p-8 text-center text-slate-400">Loading stats...</div>
+    }
+
     return (
         <div className="space-y-8 animate-in fade-in duration-700">
             <header className="flex flex-col gap-2">
                 <h1 className="text-3xl font-extrabold flex items-center gap-2">
-                    안녕하세요, 학습자님! <Sparkles className="text-yellow-400" />
+                    안녕하세요, {user?.nickname}님! <Sparkles className="text-yellow-400" />
                 </h1>
                 <p className="text-slate-400">오늘도 목표를 향해 한 걸음 더 나아가 볼까요?</p>
             </header>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <StatCard icon={<Calendar className="text-blue-400" />} label="학습 기간" value="12일째" />
-                <StatCard icon={<Zap className="text-yellow-400" />} label="연속Streak" value="5일" />
-                <StatCard icon={<BookOpen className="text-green-400" />} label="학습한 단어" value="124개" />
-                <StatCard icon={<BrainCircuit className="text-purple-400" />} label="현재 레벨" value="LV. 3" />
+                <StatCard icon={<Calendar className="text-blue-400" />} label="학습 상태" value={stats?.due_count ? `${stats.due_count}개 복습` : "완료"} />
+                <StatCard icon={<Zap className="text-yellow-400" />} label="연속 Streak" value={`${stats?.streak || 0}일`} />
+                <StatCard icon={<BookOpen className="text-green-400" />} label="학습한 단어" value={`${stats?.total_words || 0}개`} />
+                <StatCard icon={<BrainCircuit className="text-purple-400" />} label="현재 레벨" value={`LV. ${stats?.level || 1}`} />
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -26,20 +35,30 @@ const Dashboard: React.FC = () => {
                 </div>
                 <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-center gap-4">
                     <h3 className="text-sm font-bold text-slate-500 uppercase tracking-widest">AI Tutor Suggestion</h3>
-                    <p className="text-slate-300 text-sm italic">"어드민 계정으로 로그인되어 있습니다. 시스템을 관리하려면 /admin으로 접속하세요."</p>
+                    <p className="text-slate-300 text-sm italic">"꾸준함이 제 2 외국어 마스터의 지름길입니다!"</p>
                     <button className="w-full py-2 bg-slate-800 text-blue-400 font-bold rounded-lg border border-blue-900/50 hover:bg-slate-700 transition-all">
                         AI 예문 듣기
                     </button>
                 </div>
             </div>
 
-            <section className="p-8 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-xl flex flex-col items-center text-center gap-4">
-                <h2 className="text-2xl font-bold">오늘 복습할 단어가 있습니다</h2>
-                <p className="opacity-90">망각곡선이 들이치기 전에 복습하여 장기 기억으로 전환하세요!</p>
-                <Link to="/learn" className="mt-4 px-8 py-3 bg-white text-blue-700 font-bold rounded-full hover:bg-slate-100 transition-transform hover:scale-105">
-                    복습 시작하기
-                </Link>
-            </section>
+            {(stats?.due_count || 0) > 0 ? (
+                <section className="p-8 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-xl flex flex-col items-center text-center gap-4">
+                    <h2 className="text-2xl font-bold">오늘 복습할 단어가 {stats?.due_count}개 있습니다</h2>
+                    <p className="opacity-90">망각곡선이 들이치기 전에 복습하여 장기 기억으로 전환하세요!</p>
+                    <Link to="/learn" className="mt-4 px-8 py-3 bg-white text-blue-700 font-bold rounded-full hover:bg-slate-100 transition-transform hover:scale-105">
+                        복습 시작하기
+                    </Link>
+                </section>
+            ) : (
+                <section className="p-8 rounded-2xl bg-slate-800 text-slate-300 shadow-xl flex flex-col items-center text-center gap-4 border border-slate-700">
+                    <h2 className="text-2xl font-bold text-white">모든 복습을 완료했습니다!</h2>
+                    <p className="opacity-90">새로운 단어를 학습하거나 퀴즈를 풀어보세요.</p>
+                    <Link to="/quiz" className="mt-4 px-8 py-3 bg-slate-700 text-white font-bold rounded-full hover:bg-slate-600 transition-transform hover:scale-105">
+                        퀴즈 도전하기
+                    </Link>
+                </section>
+            )}
         </div>
     )
 }

@@ -67,4 +67,24 @@ export class SrsService {
       LIMIT 20
     `
     }
+
+    static async getUserStats(userId: string) {
+        const [stats] = await sql`
+            SELECT 
+                (SELECT COUNT(*) FROM srs_states WHERE user_id = ${userId}) as total_words,
+                (SELECT COUNT(*) FROM srs_states WHERE user_id = ${userId} AND next_review_at <= CURRENT_TIMESTAMP) as due_count
+        `
+
+        const safeStats = stats || { total_words: 0, due_count: 0 }
+
+        // Simple level calculation based on total words (e.g., 50 words per level)
+        const level = Math.floor((parseInt(safeStats.total_words) || 0) / 50) + 1;
+
+        return {
+            total_words: parseInt(safeStats.total_words) || 0,
+            due_count: parseInt(safeStats.due_count) || 0,
+            level: level,
+            streak: 0 // Placeholder for now
+        }
+    }
 }

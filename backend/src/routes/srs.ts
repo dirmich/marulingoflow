@@ -14,6 +14,13 @@ srs.get('/words/today', async (c) => {
     return c.json({ words })
 })
 
+srs.get('/stats', async (c) => {
+    const payload = c.get('jwtPayload') as any
+    const userId = payload.sub
+    const stats = await SrsService.getUserStats(userId)
+    return c.json(stats)
+})
+
 srs.post('/review', async (c) => {
     const payload = c.get('jwtPayload') as any
     const userId = payload.sub
