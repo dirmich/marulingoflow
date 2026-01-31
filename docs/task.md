@@ -23,7 +23,8 @@
     - [x] Tailwind CSS 및 shadcn/ui 설정
     - [x] 공통 레이아웃 및 내비게이션 구현
     - [x] 대시보드 초기 UI 및 Flashcard 구현
-    - [/] 퀴즈 및 커뮤니티 UI 구현
-    - [/] Axios 및 React Query 연동
+    - [x] 퀴즈 UI 및 서비스 레이어 구현
+    - [/] 커뮤니티 피드 및 학습 세션 구현
+    - [x] Axios 및 React Query 연동
 - [ ] Phase 3: 크로스 플랫폼 앱 - Flutter 개발
 - [ ] 작업 완료 보고 및 git commit/push
