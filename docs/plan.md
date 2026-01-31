@@ -78,4 +78,33 @@ React(Vite)를 사용하여 고품질의 학습 경험을 제공하는 대시보
 ## Verification Plan (Frontend)
 - **API 연동**: Axios Interceptor를 통한 JWT 인증 및 에러 처리 검증
 - **애니메이션**: Flashcard 뒤집기 및 페이지 전환 효과 부드러움 확인
-- **반응형**: 모바일 기기에서의 학습 편의성 테스트
+- 반응형: 모바일 기기에서의 학습 편의성 테스트
+
+---
+
+# Phase 3: Cross-platform App Design Plan (Flutter)
+
+Flutter를 사용하여 iOS와 Android에서 동일한 고성능 학습 경험을 제공합니다.
+
+## Tech Stack
+- **Framework**: Flutter
+- **State Management**: Provider (for simple state)
+- **Networking**: Dio (with Interceptors for JWT)
+- **Persistence**: Flutter Secure Storage (for Tokens)
+
+## Proposed Folders
+- `lib/core`: 테마, 상수
+- `lib/services`: API 통신 (Dio)
+- `lib/views`: 페이지 및 위젯 UI
+- `lib/models`: 데이터 모델
+
+## Key Features
+1. **SRS Learning**: 스와이프 가능한 플래시카드 UI
+2. **Dashboard**: 모바일 전용 통계 위젯
+3. **Connectivity**: 백엔드 API 공유 및 오프라인 캐시 고려
+
+---
+
+## Verification Plan (App)
+- **Cross-device**: iOS/Android 시뮬레이터 확인
+- **Performance**: 복습 애니메이션 부드러움 확인
