@@ -2,6 +2,7 @@ import sql from '../db'
 
 export class UserService {
     static async findOrCreateByGoogle(googleId: string, email: string, nickname: string) {
+        console.log('UserService loaded. loginByGoogleToken exists:', !!this.loginByGoogleToken);
         return await (sql.begin as any)(async (t: any) => {
             // 1. 이미 등록된 OAuth 공급자 확인
             const [existingProvider] = await t`
@@ -42,5 +43,25 @@ export class UserService {
             const [finalUser] = await t`SELECT id, email, nickname FROM users WHERE id = ${userId}`
             return finalUser
         })
+    }
+
+    static async loginByGoogleToken(accessToken: string) {
+        // 1. Verify token & Get User Info from Google
+        const userRes = await fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
+            headers: { Authorization: `Bearer ${accessToken}` },
+        })
+
+        if (!userRes.ok) {
+            throw new Error('Invalid Google Access Token')
+        }
+
+        const googleUser = await userRes.json() as { id: string, email: string, name: string }
+
+        // 2. Find or Create User
+        return await this.findOrCreateByGoogle(
+            googleUser.id,
+            googleUser.email,
+            googleUser.name
+        )
     }
 }

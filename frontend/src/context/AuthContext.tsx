@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, type ReactNode } from 'react'
+import React, { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react'
 
 interface User {
     id: string
@@ -34,21 +34,21 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         setIsLoading(false)
     }, [])
 
-    const login = (newToken: string, refreshToken: string, newUser: User) => {
+    const login = useCallback((newToken: string, refreshToken: string, newUser: User) => {
         localStorage.setItem('access_token', newToken)
         localStorage.setItem('refresh_token', refreshToken)
         localStorage.setItem('user', JSON.stringify(newUser))
         setToken(newToken)
         setUser(newUser)
-    }
+    }, [])
 
-    const logout = () => {
+    const logout = useCallback(() => {
         localStorage.removeItem('access_token')
         localStorage.removeItem('refresh_token')
         localStorage.removeItem('user')
         setToken(null)
         setUser(null)
-    }
+    }, [])
 
     return (
         <AuthContext.Provider value={{ user, token, isAuthenticated: !!token, isLoading, login, logout }}>

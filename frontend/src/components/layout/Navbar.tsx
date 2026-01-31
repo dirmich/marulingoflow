@@ -1,25 +1,27 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { BookOpen, Trophy, Users, LayoutDashboard, User } from 'lucide-react'
+import { BookOpen, Trophy, Users, LayoutDashboard } from 'lucide-react'
+
+import { ThemeToggle } from './ThemeToggle'
+import { UserMenu } from './UserMenu'
 
 const Navbar: React.FC = () => {
     return (
-        <nav className="fixed top-0 w-full h-16 bg-slate-900 text-white border-b border-slate-800 z-50 px-4 flex items-center justify-between">
-            <div className="flex items-center gap-2 font-bold text-xl text-blue-400">
+        <nav className="fixed top-0 w-full h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 z-50 px-4 flex items-center justify-between transition-colors">
+            <div className="flex items-center gap-2 font-bold text-xl text-blue-600 dark:text-blue-400">
                 <BookOpen className="w-8 h-8" />
                 <span>Maru LingoFlow</span>
             </div>
 
             <div className="flex gap-6">
-                <NavLink to="/" icon={<LayoutDashboard size={20} />} label="대시보드" />
-                <NavLink to="/quiz" icon={<Trophy size={20} />} label="퀴즈" />
-                <NavLink to="/community" icon={<Users size={20} />} label="커뮤니티" />
+                <NavLink to="/dashboard" icon={<LayoutDashboard size={20} />} label="대시보드" />
+                <NavLink to="/dashboard/quiz" icon={<Trophy size={20} />} label="퀴즈" />
+                <NavLink to="/dashboard/community" icon={<Users size={20} />} label="커뮤니티" />
             </div>
 
             <div className="flex items-center gap-4">
-                <button className="p-2 rounded-full hover:bg-slate-800">
-                    <User size={24} />
-                </button>
+                <ThemeToggle />
+                <UserMenu />
             </div>
         </nav>
     )

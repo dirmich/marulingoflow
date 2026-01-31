@@ -41,20 +41,43 @@ auth.get('/google/callback', async (c) => {
 
         const { access_token } = await tokenRes.json() as any
 
-        // 2. Get user info from Google
-        const userRes = await fetch(GOOGLE_USER_INFO_URL, {
-            headers: { Authorization: `Bearer ${access_token}` },
+        // 2. Login with Access Token via Service
+        const user = await UserService.loginByGoogleToken(access_token)
+
+        // 3. Generate JWT & Refresh Token
+        const payload = {
+            sub: user.id,
+            exp: Math.floor(Date.now() / 1000) + 60 * 60, // 1 hour
+        }
+        const secret = process.env.JWT_SECRET!
+        const token = await sign(payload, secret)
+
+        const refreshToken = crypto.randomUUID()
+        await redisClient.set(`refresh_token:${user.id}`, refreshToken, {
+            EX: 60 * 60 * 24 * 7, // 7 days
         })
-        const googleUser = await userRes.json() as import('../types/auth').GoogleUser
 
-        // 3. Find or Create User in DB
-        const user = await UserService.findOrCreateByGoogle(
-            googleUser.id,
-            googleUser.email,
-            googleUser.name
-        )
+        const frontendUrl = (process.env.VITE_API_URL || 'http://localhost:3000').replace('/api/v1', '')
+        const redirectUrl = new URL(`${frontendUrl}/auth/callback`)
+        redirectUrl.searchParams.append('access_token', token)
+        redirectUrl.searchParams.append('refresh_token', refreshToken)
+        redirectUrl.searchParams.append('user', JSON.stringify(user))
 
-        // 4. Generate JWT & Refresh Token
+        return c.redirect(redirectUrl.toString())
+    } catch (err: any) {
+        console.error('Auth Callback Error:', err)
+        const frontendUrl = (process.env.VITE_API_URL || 'http://localhost:3000').replace('/api/v1', '')
+        return c.redirect(`${frontendUrl}/login?error=auth_failed&details=${encodeURIComponent(err.message)}`)
+    }
+})
+
+auth.post('/google/token', async (c) => {
+    try {
+        const { access_token } = await c.req.json()
+        if (!access_token) return c.json({ error: 'Access token missing' }, 400)
+
+        const user = await UserService.loginByGoogleToken(access_token)
+
         const payload = {
             sub: user.id,
             exp: Math.floor(Date.now() / 1000) + 60 * 60, // 1 hour
@@ -73,7 +96,7 @@ auth.get('/google/callback', async (c) => {
             user
         })
     } catch (err: any) {
-        return c.json({ error: 'Auth failed', details: err.message }, 500)
+        return c.json({ error: 'Token login failed', details: err.message }, 401)
     }
 })
 
@@ -103,11 +126,13 @@ auth.post('/dev-login', async (c) => {
             EX: 60 * 60 * 24 * 7, // 7 days
         })
 
-        return c.json({
-            access_token: token,
-            refresh_token: refreshToken,
-            user
-        })
+        const frontendUrl = (process.env.VITE_API_URL || 'http://localhost:3000').replace('/api/v1', '')
+        const redirectUrl = new URL(`${frontendUrl}/auth/callback`)
+        redirectUrl.searchParams.append('access_token', token)
+        redirectUrl.searchParams.append('refresh_token', refreshToken)
+        redirectUrl.searchParams.append('user', JSON.stringify(user))
+
+        return c.redirect(redirectUrl.toString())
     } catch (err: any) {
         return c.json({ error: 'Dev login failed', details: err.message }, 500)
     }
