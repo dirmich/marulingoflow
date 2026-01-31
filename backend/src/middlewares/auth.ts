@@ -9,7 +9,7 @@ export const authMiddleware = createMiddleware(async (c, next) => {
 
     const token = authHeader.split(' ')[1]
     try {
-        const payload = await verify(token, process.env.JWT_SECRET!)
+        const payload = await (verify as any)(token, process.env.JWT_SECRET!)
         c.set('jwtPayload', payload)
         await next()
     } catch (err) {
