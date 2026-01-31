@@ -46,3 +46,36 @@ Lingo-Flow의 핵심인 다국어 지원, SRS(망각곡선) 시스템, 그리고
 
 ### Manual Verification
 - 사용자 검토를 통한 스키마 및 API 구조 확정
+
+---
+
+# Phase 2: Web Frontend Design Plan
+
+React(Vite)를 사용하여 고품질의 학습 경험을 제공하는 대시보드 및 UI를 구현합니다.
+
+## Tech Stack
+- **Framework**: React.js (TypeScript)
+- **Styling**: Tailwind CSS
+- **UI Components**: shadcn/ui, Lucide Icons
+- **State Management**: React Query (TanStack Query) for API synchronization
+- **Routing**: React Router DOM
+
+## Proposed Components
+### 1. Layout System
+- `Navbar`: 상단 내비게이션 (홈, 퀴즈, 커뮤니티, 프로필)
+- `Layout`: 공통 레이아웃 및 테마 적용
+
+### 2. Dashboard Page
+- `UserStats`: 일일 학습량, 연속 학습일, 레벨 정보 시각화
+- `ReviewCard`: SRS 기반 오늘 복습할 단어 수 표시 및 학습 시작 버튼
+
+### 3. Learning UI
+- `Flashcard`: 단어/문장 학습 카드 인터페이스 (SM-2 등급 입력 포함)
+- `QuizSession`: 동적 퀴즈 및 실시간 대회 UI
+
+---
+
+## Verification Plan (Frontend)
+- **API 연동**: Axios Interceptor를 통한 JWT 인증 및 에러 처리 검증
+- **애니메이션**: Flashcard 뒤집기 및 페이지 전환 효과 부드러움 확인
+- **반응형**: 모바일 기기에서의 학습 편의성 테스트
