@@ -7,7 +7,8 @@
 - [x] 프로젝트 구조 재편 및 초기화
     - [x] frontend, backend, app, docs 폴더 생성 및 문서 이동
     - [x] 공통 .env 설정 및 포트 정의 (FE: 3000, BE: 8000)
-- [x] Phase 1.3:- [x] Google SSO 연동 및 Redis 세션 로직 구현
+- [x] Phase 1.3: Hono.js 서버 재구축 (backend 폴더 내)
+- [x] Google SSO 연동 및 Redis 세션 로직 구현
 - [x] SRS 단어장 및 데이터 관리 시스템 구현
     - [x] Word 및 Srs 서비스 개발 (SM-2 알고리즘)
     - [x] SRS 관련 API 라우트 구현
@@ -15,7 +16,13 @@
 - [x] 퀴즈 시스템 및 커뮤니티 기능 구현
     - [x] 퀴즈 서비스 및 라우트 구현
     - [x] 커뮤니티 게시글/댓글 서비스 및 라우트 구현
-- [/] 실시간 퀴즈 대회 (WebSocket) 구현
-    - [/] Tournament 서비스 및 WebSocket 핸들러 개발
-    - [ ] 실시간 점수 동기화 및 랭킹 로직 구현
+- [x] 실시간 퀴즈 대회 (WebSocket) 구현
+    - [x] Tournament 서비스 및 WebSocket 핸들러 개발
+    - [x] 실시간 점수 동기화 및 랭킹 로직 구현
+- [/] Phase 2: 웹 프론트엔드 - React 개발
+    - [/] Tailwind CSS 및 shadcn/ui 설정
+    - [ ] 공통 레이아웃 및 내비게이션 구현
+    - [ ] 대시보드 (사용자 통계 및 SRS 복습 현황) 구현
+    - [ ] 퀴즈 및 커뮤니티 UI 구현
+- [ ] Phase 3: 크로스 플랫폼 앱 - Flutter 개발
 - [ ] 작업 완료 보고 및 git commit/push
