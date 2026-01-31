@@ -13,8 +13,10 @@
 
 ### 작업 내용
 - **다국어 확장형 DB 스키마 설계**: `languages`, `users`, `words`, `srs_states`, `communities`, `posts`, `quizzes`, `tournaments` 테이블 정의. (`docs/schema.sql`)
-- **OAuth2 SSO 및 세션 설계**: Google SSO 연동 및 JWT/Redis 기반 세션리스 인증 아키텍처 설계 및 구현.
-- **SRS 단어장 시스템**: SM-2 알고리즘 기반 복습 주지 관리 및 API 구현.
+- Phase 1.3: Hono.js 백엔드 핵심 기능 구현 완료 (Auth, SRS, Quiz, Community, WS)
+- Phase 2: 웹 프론트엔드 (React + Tailwind) 대시보드 및 학습 UI 구현 완료
+- Phase 3: 크로스 플랫폼 앱 (Flutter) 대시보드 및 학습 UI 기초 구현 완료
+- **Current Status**: v0.3.0 개발 단계 종료 및 전체 기능 검증 완료
 - **퀴즈 및 커뮤니티**: 동적 퀴즈 생성, 게시글/댓글, 학습 인증(Daily Log) 기능 구현.
 - **실시간 대회 (WebSocket)**: WebSocket을 이용한 실시간 랭킹 및 퀴즈 대회 시스템 구축.
 
