@@ -15,12 +15,20 @@ fi
 case $ACTION in
     start)
         if [ "$TARGET" == "all" ] || [ "$TARGET" == "backend" ]; then
-            echo "[INFO] Starting Backend..."
-            cd backend && nohup bun dev > ../backend.log 2>&1 & echo $! > ../backend.pid && cd ..
+            if [ -d "backend" ]; then
+                echo "[INFO] Starting Backend..."
+                (cd backend && nohup bun dev > ../backend.log 2>&1 & echo $!) > backend.pid
+            else
+                echo "[ERROR] Backend directory not found"
+            fi
         fi
         if [ "$TARGET" == "all" ] || [ "$TARGET" == "frontend" ]; then
-            echo "[INFO] Starting Frontend..."
-            cd frontend && nohup bun dev > ../frontend.log 2>&1 & echo $! > ../frontend.pid && cd ..
+            if [ -d "frontend" ]; then
+                echo "[INFO] Starting Frontend..."
+                (cd frontend && nohup bun dev > ../frontend.log 2>&1 & echo $!) > frontend.pid
+            else
+                echo "[ERROR] Frontend directory not found"
+            fi
         fi
         ;;
     stop)
