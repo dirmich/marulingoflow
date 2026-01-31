@@ -7,7 +7,7 @@ const Navbar: React.FC = () => {
         <nav className="fixed top-0 w-full h-16 bg-slate-900 text-white border-b border-slate-800 z-50 px-4 flex items-center justify-between">
             <div className="flex items-center gap-2 font-bold text-xl text-blue-400">
                 <BookOpen className="w-8 h-8" />
-                <span>Lingo-Flow</span>
+                <span>Maru LingoFlow</span>
             </div>
 
             <div className="flex gap-6">
