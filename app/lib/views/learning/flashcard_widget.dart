@@ -66,7 +66,6 @@ class _FlashcardWidgetState extends State<FlashcardWidget> {
           color: Colors.white.withValues(alpha: 0.1),
           width: 2,
         ),
-        border: Border.all(color: Colors.white.withOpacity(0.1), width: 2),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
