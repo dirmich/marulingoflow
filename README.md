@@ -1,4 +1,4 @@
-# marulingoflow
+# Maru LingoFlow
 
 To install dependencies:
 

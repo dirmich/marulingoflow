@@ -5,16 +5,16 @@ import 'views/dashboard/dashboard_view.dart';
 import 'controllers/learning_controller.dart';
 
 void main() {
-  runApp(const LingoFlowApp());
+  runApp(const MaruLingoFlowApp());
 }
 
-class LingoFlowApp extends StatelessWidget {
-  const LingoFlowApp({super.key});
+class MaruLingoFlowApp extends StatelessWidget {
+  const MaruLingoFlowApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Lingo-Flow',
+      title: 'Maru LingoFlow',
       theme: AppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
       initialBinding: BindingsBuilder(() {

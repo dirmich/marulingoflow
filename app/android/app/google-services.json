@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "143767569672",
+    "project_id": "marulingoflow",
+    "storage_bucket": "marulingoflow.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143767569672:android:8912b91885b223239918bd",
+        "android_client_info": {
+          "package_name": "com.highmaru.lingoflow"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8fQJDuBSXBxf-7ihMHFhlZuzSBYu5qPU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
