@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Sparkles, Calendar, Zap, BookOpen } from 'lucide-react'
 
 const Dashboard: React.FC = () => {
