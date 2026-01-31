@@ -8,7 +8,7 @@ if [ -z "$ACTION" ]; then
     exit 1
 fi
 
-if [ -z "$TARGET" ]; then
+if [ -z "$TARGET" ] || [ "$TARGET" == "none" ]; then
     TARGET="all"
 fi
 
