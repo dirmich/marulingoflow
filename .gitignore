@@ -28,3 +28,4 @@ Thumbs.db
 # Logs and PID files
 *.log
 *.pid
+COMMIT_MSG*
