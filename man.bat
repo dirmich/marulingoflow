@@ -6,7 +6,6 @@ set TARGET=%2
 
 if "%ACTION%"=="" goto usage
 if "%TARGET%"=="" set TARGET=all
-if "%TARGET%"=="none" set TARGET=all
 
 :check_action
 if "%ACTION%"=="start" goto do_start
