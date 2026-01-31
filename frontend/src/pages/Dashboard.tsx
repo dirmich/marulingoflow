@@ -19,11 +19,11 @@ const Dashboard: React.FC = () => {
             </div>
 
             <section className="p-8 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-xl flex flex-col items-center text-center gap-4">
-                <h2 className="text-2xl font-bold">오늘 복습할 단어가 15개 있습니다</h2>
+                <h2 className="text-2xl font-bold">오늘 복습할 단어가 있습니다</h2>
                 <p className="opacity-90">망각곡선이 들이치기 전에 복습하여 장기 기억으로 전환하세요!</p>
-                <button className="mt-4 px-8 py-3 bg-white text-blue-700 font-bold rounded-full hover:bg-slate-100 transition-transform hover:scale-105">
+                <Link to="/learn" className="mt-4 px-8 py-3 bg-white text-blue-700 font-bold rounded-full hover:bg-slate-100 transition-transform hover:scale-105">
                     복습 시작하기
-                </button>
+                </Link>
             </section>
         </div>
     )

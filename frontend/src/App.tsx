@@ -4,6 +4,7 @@ import Layout from './components/layout/Layout'
 import Dashboard from './pages/Dashboard'
 import QuizPage from './pages/QuizPage'
 import CommunityPage from './pages/CommunityPage'
+import LearningPage from './pages/LearningPage'
 
 const queryClient = new QueryClient()
 
@@ -16,6 +17,7 @@ function App() {
             <Route index element={<Dashboard />} />
             <Route path="quiz" element={<QuizPage />} />
             <Route path="community" element={<CommunityPage />} />
+            <Route path="learn" element={<LearningPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
