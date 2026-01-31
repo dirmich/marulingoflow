@@ -24,3 +24,7 @@ app/ios/Flutter/flutter_export_environment.sh
 # OS
 .DS_Store
 Thumbs.db
+
+# Logs and PID files
+*.log
+*.pid

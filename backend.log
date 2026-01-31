@@ -1,6 +1,0 @@
-$ bun --hot --env-file=../.env src/index.ts
-1 | })
-2 | {
-    ^
-SyntaxError: Missing 'default' export in module 'Z:\work\0.project\marulingoflow\backend\src\db\redis.ts'.
-      at loadAndEvaluateModule (2:1)
