@@ -62,6 +62,10 @@ class _FlashcardWidgetState extends State<FlashcardWidget> {
       decoration: BoxDecoration(
         color: AppTheme.cardDark,
         borderRadius: BorderRadius.circular(30),
+        border: Border.all(
+          color: Colors.white.withValues(alpha: 0.1),
+          width: 2,
+        ),
         border: Border.all(color: Colors.white.withOpacity(0.1), width: 2),
       ),
       child: Column(
@@ -77,7 +81,7 @@ class _FlashcardWidgetState extends State<FlashcardWidget> {
             style: const TextStyle(
               color: Colors.white,
               fontSize: 40,
-              fontWeight: FontWeight.black,
+              fontWeight: FontWeight.w900,
             ),
           ),
           if (widget.phonetic != null) ...[
