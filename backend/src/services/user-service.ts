@@ -2,25 +2,25 @@ import sql from '../db'
 
 export class UserService {
     static async findOrCreateByGoogle(googleId: string, email: string, nickname: string) {
-        return await sql.begin(async (sql) => {
+        return await sql.begin(async (t) => {
             // 1. 이미 등록된 OAuth 공급자 확인
-            const [existingProvider] = await sql`
+            const [existingProvider] = await t`
         SELECT user_id FROM auth_providers 
         WHERE provider_name = 'google' AND provider_user_id = ${googleId}
       `
 
             if (existingProvider) {
-                const [user] = await sql`SELECT id, email, nickname FROM users WHERE id = ${existingProvider.user_id}`
+                const [user] = await t`SELECT id, email, nickname FROM users WHERE id = ${existingProvider.user_id}`
                 return user
             }
 
             // 2. 이메일로 기존 사용자 확인 (다른 OAuth로 가입했을 수 있음)
-            const [existingUser] = await sql`SELECT id, email, nickname FROM users WHERE email = ${email}`
+            const [existingUser] = await t`SELECT id, email, nickname FROM users WHERE email = ${email}`
             let userId = existingUser?.id
 
             if (!userId) {
                 // 3. 신규 사용자 생성
-                const [newUser] = await sql`
+                const [newUser] = await t`
           INSERT INTO users (email, nickname)
           VALUES (${email}, ${nickname})
           RETURNING id, email, nickname
@@ -29,12 +29,12 @@ export class UserService {
             }
 
             // 4. OAuth 공급자 연결
-            await sql`
+            await t`
         INSERT INTO auth_providers (user_id, provider_name, provider_user_id)
         VALUES (${userId}, 'google', ${googleId})
       `
 
-            const [finalUser] = await sql`SELECT id, email, nickname FROM users WHERE id = ${userId}`
+            const [finalUser] = await t`SELECT id, email, nickname FROM users WHERE id = ${userId}`
             return finalUser
         })
     }

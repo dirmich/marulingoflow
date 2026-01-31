@@ -8,8 +8,8 @@
     - [x] frontend, backend, app, docs 폴더 생성 및 문서 이동
     - [x] 공통 .env 설정 및 포트 정의 (FE: 3000, BE: 8000)
 - [x] Phase 1.3: Hono.js 서버 재구축 (backend 폴더 내)
-- [/] Google SSO 연동 및 Redis 세션 로직 구현
-    - [/] 환경 변수 및 DB/Redis 클라이언트 초기화
-    - [ ] Google OAuth2 인증 흐름 구현
-    - [ ] JWT 및 Refresh Token 발행 (Redis 저장)
-- [ ] 작업 완료 보고 및 git commit/push
+- [x] Google SSO 연동 및 Redis 세션 로직 구현
+    - [x] 환경 변수 및 DB/Redis 클라이언트 초기화
+    - [x] Google OAuth2 인증 흐름 구현
+    - [x] JWT 및 Refresh Token 발행 (Redis 저장)
+- [x] 작업 완료 보고 및 git commit/push

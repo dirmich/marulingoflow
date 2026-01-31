@@ -39,13 +39,13 @@ auth.get('/google/callback', async (c) => {
             }),
         })
 
-        const { access_token } = await tokenRes.json()
+        const { access_token } = await tokenRes.json() as any
 
         // 2. Get user info from Google
         const userRes = await fetch(GOOGLE_USER_INFO_URL, {
             headers: { Authorization: `Bearer ${access_token}` },
         })
-        const googleUser = await userRes.json()
+        const googleUser = await userRes.json() as import('../types/auth').GoogleUser
 
         // 3. Find or Create User in DB
         const user = await UserService.findOrCreateByGoogle(
