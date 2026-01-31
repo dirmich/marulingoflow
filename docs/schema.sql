@@ -12,11 +12,20 @@ CREATE TABLE languages (
 CREATE TABLE users (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     email VARCHAR(255) UNIQUE NOT NULL,
-    password_hash TEXT NOT NULL,
     nickname VARCHAR(50),
     native_language_id INTEGER REFERENCES languages(id),
     target_language_id INTEGER REFERENCES languages(id),
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 2.1 OAuth 공급자 정보 (Auth Providers)
+CREATE TABLE auth_providers (
+    id SERIAL PRIMARY KEY,
+    user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+    provider_name VARCHAR(50) NOT NULL, -- 'google', 'apple', 'github' 등
+    provider_user_id VARCHAR(255) NOT NULL, -- OAuth 제공자의 고유 사용자 ID
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(provider_name, provider_user_id)
 );
 
 -- 3. 단어 데이터 (Words)

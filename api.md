@@ -6,33 +6,41 @@
 
 ---
 
-## 2. Auth API
-시스템 접근 및 유저 관리를 위한 API입니다.
+## 2. Auth API (OAuth2 SSO & JWT)
+Google SSO를 기본으로 하며, JWT와 Redis를 사용해 세션리스로 동작합니다.
 
-### 2.1 회원가입 (Register)
-`POST /auth/register`
+### 2.1 Google 로그인 시작 (Login with Google)
+`GET /auth/google`
+- Google OAuth 인증 페이지로 리다이렉트합니다.
 
-**Request Body**
+### 2.2 Google 콜백 (Callback)
+`GET /auth/google/callback`
+- Google로부터 인증 코드를 받아 처리합니다.
+- 새로운 사용자인 경우 이메일 기반으로 자동 회원가입을 진행합니다.
+- **Response**
 ```json
 {
-  "email": "user@example.com",
-  "password": "password123",
-  "nickname": "lingo_master",
-  "native_language_id": 1,
-  "target_language_id": 2
+  "access_token": "jwt_token...",
+  "refresh_token": "refresh_token...",
+  "user": { "id": "uuid", "email": "user@gmail.com", "nickname": "..." }
 }
 ```
 
-### 2.2 로그인 (Login)
-`POST /auth/login`
+### 2.3 토큰 갱신 (Token Refresh)
+`POST /auth/refresh`
+- Refresh Token을 사용하여 Access Token을 재발급합니다.
+- Redis에 저장된 Refresh Token 정보를 검증합니다.
 
-**Response**
-```json
-{
-  "token": "eyJhbG...",
-  "user": { "id": "uuid", "nickname": "lingo_master" }
-}
-```
+### 2.4 로그아웃 (Logout)
+`POST /auth/logout`
+- Redis에서 해당 세션 정보를 삭제하여 무효화합니다.
+
+---
+
+## 3. Redis Session Architecture
+- **JWT (Access Token)**: Stateless하며 요청 시마다 서버에서 검증합니다. (만료 시간 짧음)
+- **Refresh Token**: Redis에 `user_id`를 키로 하여 저장됩니다. (만료 시간 김)
+- **White-list/Black-list**: 로그아웃 시 토큰을 Black-list에 추가하거나, 활성 세션만 White-list로 관리하여 보안을 강화합니다.
 
 ---
 

@@ -4,7 +4,8 @@
 
 ### 작업 내용
 - **다국어 확장형 DB 스키마 설계**: `languages`, `users`, `words`, `srs_states`, `communities`, `posts`, `quizzes`, `tournaments` 테이블 정의. (`docs/schema.sql`)
-- **API 명세서 초안 작성**: Auth, SRS, Community, Quiz, WebSocket 이벤트 정의. (`api.md`)
+- **OAuth2 SSO 및 세션 설계**: Google SSO 연동 및 JWT/Redis 기반 세션리스 인증 아키텍처 설계 및 스키마 반영 (`auth_providers` 테이블 추가).
+- **API 명세서 업데이트**: OAuth 로그인, 콜백, 토큰 갱신, 로그아웃 API 정의. (`api.md`)
 
 ### 테스트 결과
 - 설계 단계이므로 별도의 코드 테스트는 진행하지 않았으나, SQL 문법 및 API 구조의 논리적 일관성을 검증함.
