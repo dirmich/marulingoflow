@@ -13,4 +13,5 @@ console.log(`🚀 Lingo-Flow Backend is running on port ${port}`)
 export default {
     port: port,
     fetch: app.fetch,
+    websocket,
 }
