@@ -29,7 +29,8 @@
     - [x] 대시보드 실데이터 연동 (React Query)
 - [x] Phase 3: 크로스 플랫폼 앱 - Flutter 개발
     - [x] Flutter 기본 구조 및 테마 설정
-    - [x] API 연동을 위한 Dio/Provider 설정
+    - [/] GetX 기반 아키텍처 전환 및 컨트롤러 분리
+    - [x] API 연동을 위한 Dio 설정
 - [x] Phase 4: 고도화 및 어드민 시스템 (Admin: oldtv.cf@gmail.com)
     - [x] DB 스키마 확장 (Role 필드 추가) 및 관리자 권한 로직 설계
     - [x] AI(Gemini) 연동 예문 자동 생성 엔진 개발

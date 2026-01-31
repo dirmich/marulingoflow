@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../core/theme.dart';
 import '../learning/learning_view.dart';
 
@@ -87,14 +88,7 @@ class DashboardView extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const LearningView(),
-                        ),
-                      );
-                    },
+                    onPressed: () => Get.to(() => const LearningView()),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       foregroundColor: Colors.blue[700],

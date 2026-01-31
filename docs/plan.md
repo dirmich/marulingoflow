@@ -108,9 +108,9 @@ Flutter를 사용하여 iOS와 Android에서 동일한 고성능 학습 경험�
 
 ## Tech Stack
 - **Framework**: Flutter
-- **State Management**: Provider (for simple state)
+- **State Management & Routing**: GetX (Simple, Reactive, Dependency Injection)
 - **Networking**: Dio (with Interceptors for JWT)
-- **Persistence**: Flutter Secure Storage (for Tokens)
+- **Persistence**: Get Storage (GetX ecosystem) or Flutter Secure Storage
 
 ## Proposed Folders
 - `lib/core`: 테마, 상수
