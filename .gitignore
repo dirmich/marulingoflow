@@ -1,0 +1,26 @@
+# Node
+node_modules/
+dist/
+.env
+
+# Backend
+backend/node_modules/
+backend/dist/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Flutter (App)
+app/.dart_tool/
+app/.flutter-plugins
+app/.flutter-plugins-dependencies
+app/.packages
+app/build/
+app/ios/Flutter/.last_build_id
+app/ios/Flutter/Generated.xcconfig
+app/ios/Flutter/flutter_export_environment.sh
+
+# OS
+.DS_Store
+Thumbs.db
