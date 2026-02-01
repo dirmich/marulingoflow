@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { BookOpen, Trophy, Users, LayoutDashboard } from 'lucide-react'
 
 import { ThemeToggle } from './ThemeToggle'
@@ -27,11 +27,22 @@ const Navbar: React.FC = () => {
     )
 }
 
-const NavLink: React.FC<{ to: string, icon: React.ReactNode, label: string }> = ({ to, icon, label }) => (
-    <Link to={to} className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-800 transition-colors">
-        {icon}
-        <span className="hidden md:inline font-medium">{label}</span>
-    </Link>
-)
+const NavLink: React.FC<{ to: string, icon: React.ReactNode, label: string }> = ({ to, icon, label }) => {
+    const location = useLocation()
+    const isActive = location.pathname === to
+
+    return (
+        <Link
+            to={to}
+            className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors ${isActive
+                ? 'bg-blue-50 text-blue-600 dark:bg-slate-800 dark:text-blue-400'
+                : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+                }`}
+        >
+            {icon}
+            <span className="hidden md:inline font-medium">{label}</span>
+        </Link>
+    )
+}
 
 export default Navbar
