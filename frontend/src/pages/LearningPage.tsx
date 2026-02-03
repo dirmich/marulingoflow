@@ -40,7 +40,7 @@ const LearningPage: React.FC = () => {
             <div className="p-6 bg-green-500/10 rounded-full text-green-400">
                 <CheckCircle2 size={64} />
             </div>
-            <h2 className="text-3xl font-bold text-white">오늘의 학습을 마쳤습니다!</h2>
+            <h2 className="text-3xl font-bold text-slate-900 dark:text-white">오늘의 학습을 마쳤습니다!</h2>
             <p className="text-slate-400 max-w-sm">
                 모든 복습이 완료되었습니다. 내일 다시 새로운 단어들이 찾아올 거예요.
             </p>

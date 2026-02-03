@@ -24,7 +24,7 @@ const AdminPanel: React.FC = () => {
         <div className="space-y-8 animate-in fade-in duration-500">
             <header className="flex items-center gap-3">
                 <Shield className="text-red-500 w-8 h-8" />
-                <h1 className="text-3xl font-black text-white uppercase tracking-tighter">System Administrator</h1>
+                <h1 className="text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tighter">System Administrator</h1>
             </header>
 
             {stats && (
@@ -35,20 +35,20 @@ const AdminPanel: React.FC = () => {
                 </div>
             )}
 
-            <section className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
-                <div className="p-6 border-b border-slate-800 flex justify-between items-center">
-                    <h2 className="font-bold text-lg text-slate-100 italic">User Management</h2>
+            <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
+                <div className="p-6 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
+                    <h2 className="font-bold text-lg text-slate-900 dark:text-slate-100 italic">User Management</h2>
                     <div className="relative">
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 w-4 h-4" />
                         <input
                             type="text"
                             placeholder="Search by email..."
-                            className="bg-slate-800 text-sm py-2 pl-10 pr-4 rounded-full border-none focus:ring-2 focus:ring-red-500 transition-all text-slate-200"
+                            className="bg-slate-100 dark:bg-slate-800 text-sm py-2 pl-10 pr-4 rounded-full border-none focus:ring-2 focus:ring-red-500 transition-all text-slate-900 dark:text-slate-200"
                         />
                     </div>
                 </div>
                 <table className="w-full text-left">
-                    <thead className="bg-slate-800/50 text-slate-400 text-xs uppercase tracking-widest font-bold">
+                    <thead className="bg-slate-100 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 text-xs uppercase tracking-widest font-bold">
                         <tr>
                             <th className="p-4">Email</th>
                             <th className="p-4">Nickname</th>
@@ -56,11 +56,11 @@ const AdminPanel: React.FC = () => {
                             <th className="p-4 text-right">Registered</th>
                         </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-800">
+                    <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
                         {users.map((user) => (
-                            <tr key={user.id} className="hover:bg-slate-800/30 transition-colors">
-                                <td className="p-4 text-slate-300 font-medium">{user.email}</td>
-                                <td className="p-4 text-slate-400">{user.nickname}</td>
+                            <tr key={user.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+                                <td className="p-4 text-slate-900 dark:text-slate-300 font-medium">{user.email}</td>
+                                <td className="p-4 text-slate-600 dark:text-slate-400">{user.nickname}</td>
                                 <td className="p-4">
                                     <span className={`px-2 py-1 rounded text-[10px] font-bold ${user.role === 'ADMIN' ? 'bg-red-500/10 text-red-500 border border-red-500/20' : 'bg-blue-500/10 text-blue-500 border border-blue-500/20'}`}>
                                         {user.role}
@@ -77,12 +77,12 @@ const AdminPanel: React.FC = () => {
 }
 
 const StatBox: React.FC<{ label: string, value: any, icon: React.ReactNode }> = ({ label, value, icon }) => (
-    <div className="p-6 bg-slate-900 border border-slate-800 rounded-2xl flex items-center justify-between shadow-xl">
+    <div className="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl flex items-center justify-between shadow-xl">
         <div>
             <p className="text-xs text-slate-500 uppercase font-black mb-1">{label}</p>
-            <p className="text-3xl font-black text-white">{value}</p>
+            <p className="text-3xl font-black text-slate-900 dark:text-white">{value}</p>
         </div>
-        <div className="p-4 bg-slate-800 rounded-2xl border border-slate-700">{icon}</div>
+        <div className="p-4 bg-slate-100 dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700">{icon}</div>
     </div>
 )
 

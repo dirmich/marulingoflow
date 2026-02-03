@@ -33,9 +33,9 @@ const Dashboard: React.FC = () => {
                 <div className="lg:col-span-2">
                     <LearningChart />
                 </div>
-                <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-center gap-4">
+                <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col justify-center gap-4">
                     <h3 className="text-sm font-bold text-slate-500 uppercase tracking-widest">AI Tutor Suggestion</h3>
-                    <p className="text-slate-300 text-sm italic">"꾸준함이 제 2 외국어 마스터의 지름길입니다!"</p>
+                    <p className="text-slate-600 dark:text-slate-300 text-sm italic">"꾸준함이 제 2 외국어 마스터의 지름길입니다!"</p>
                     <button className="w-full py-2 bg-slate-800 text-blue-400 font-bold rounded-lg border border-blue-900/50 hover:bg-slate-700 transition-all">
                         AI 예문 듣기
                     </button>
@@ -51,10 +51,10 @@ const Dashboard: React.FC = () => {
                     </Link>
                 </section>
             ) : (
-                <section className="p-8 rounded-2xl bg-slate-800 text-slate-300 shadow-xl flex flex-col items-center text-center gap-4 border border-slate-700">
-                    <h2 className="text-2xl font-bold text-white">모든 복습을 완료했습니다!</h2>
+                <section className="p-8 rounded-2xl bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 shadow-xl flex flex-col items-center text-center gap-4 border border-slate-200 dark:border-slate-700">
+                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white">모든 복습을 완료했습니다!</h2>
                     <p className="opacity-90">새로운 단어를 학습하거나 퀴즈를 풀어보세요.</p>
-                    <Link to="/quiz" className="mt-4 px-8 py-3 bg-slate-700 text-white font-bold rounded-full hover:bg-slate-600 transition-transform hover:scale-105">
+                    <Link to="/quiz" className="mt-4 px-8 py-3 bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white font-bold rounded-full hover:bg-slate-200 dark:hover:bg-slate-600 transition-transform hover:scale-105">
                         퀴즈 도전하기
                     </Link>
                 </section>
@@ -64,11 +64,11 @@ const Dashboard: React.FC = () => {
 }
 
 const StatCard: React.FC<{ icon: React.ReactNode, label: string, value: string }> = ({ icon, label, value }) => (
-    <div className="p-6 rounded-xl bg-slate-900 border border-slate-800 shadow-sm flex items-center gap-4">
-        <div className="p-3 bg-slate-800 rounded-lg">{icon}</div>
+    <div className="p-6 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-center gap-4">
+        <div className="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg">{icon}</div>
         <div>
-            <p className="text-sm text-slate-400">{label}</p>
-            <p className="text-xl font-bold text-slate-100">{value}</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400">{label}</p>
+            <p className="text-xl font-bold text-slate-900 dark:text-slate-100">{value}</p>
         </div>
     </div>
 )

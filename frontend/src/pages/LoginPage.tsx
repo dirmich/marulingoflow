@@ -30,7 +30,7 @@ const LoginPage: React.FC = () => {
     }
 
     return (
-        <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4 overflow-hidden relative">
+        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center p-4 overflow-hidden relative">
             {/* Background Decorations */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/20 rounded-full blur-[120px] animate-pulse"></div>
@@ -42,7 +42,7 @@ const LoginPage: React.FC = () => {
                     <div className="p-4 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl shadow-lg mb-6 group hover:scale-110 transition-transform">
                         <LogIn className="text-white w-8 h-8" />
                     </div>
-                    <h1 className="text-3xl font-black text-white mb-2 flex items-center gap-2">
+                    <h1 className="text-3xl font-black text-slate-900 dark:text-white mb-2 flex items-center gap-2">
                         Maru LingoFlow <Sparkles className="text-yellow-400 w-5 h-5" />
                     </h1>
                     <p className="text-slate-400">당신의 언어 학습을 가속화하세요</p>

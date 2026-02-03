@@ -36,7 +36,7 @@ const QuizPage: React.FC = () => {
                 <div className="p-4 bg-blue-500/10 rounded-full text-blue-400 mb-2">
                     <Trophy size={48} />
                 </div>
-                <h2 className="text-2xl font-bold text-white">다음 실시간 대회 예고</h2>
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white">다음 실시간 대회 예고</h2>
                 <p className="text-slate-400 max-w-md">
                     매일 저녁 9시, 전 세계 학습자들과 실시간으로 경쟁하세요! <br />
                     <strong>오늘의 종목: 일본어 N5 단어 배틀</strong>
@@ -62,7 +62,7 @@ const QuizCard: React.FC<{ title: string, description: string, icon: React.React
         </div>
         <h3 className="text-xl font-bold text-slate-100 mb-2">{title}</h3>
         <p className="text-slate-400 text-sm mb-6">{description}</p>
-        <button className="w-full py-3 bg-slate-800 hover:bg-blue-600 text-slate-300 hover:text-white rounded-xl font-bold transition-all">
+        <button className="w-full py-3 bg-slate-100 dark:bg-slate-800 hover:bg-blue-600 text-slate-600 dark:text-slate-300 hover:text-white rounded-xl font-bold transition-all">
             시작하기
         </button>
     </div>
